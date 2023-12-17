@@ -27,6 +27,6 @@ int main() {
             res += val;
         }
     }
-
+    
     cout << res;
 }
