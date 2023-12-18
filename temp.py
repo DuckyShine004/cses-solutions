@@ -1,42 +1,54 @@
 from functools import cache
 
-# n = 9
+# n, x = 3, 9
 # coins = [2, 3, 5]
 
+# dp = [0] * (x + 1)
+# dp[0] = 1
+# memo = [True] * n
 
-# @cache
-# def dp(x):
-#     if x == n:
-#         return 1
-
-#     if x > n:
-#         return 0
-
+# for i in range(1, x + 1):
 #     out = 0
+#     tmp = memo.copy()
 
-#     for coin in coins:
-#         out += dp(x + coin)
+#     for j in range(n):
+#         k = i - coins[j]
 
-#     return out
+#         if memo[j] and :
+#             out += dp[k]
+#             tmp[j] = False
 
-# res = dp(0)
-
-# print(res)
+#     dp[i] = out
 
 
-n, x = 3, 9
+n = 9
 coins = [2, 3, 5]
 
-dp = [0] * (x + 1)
-dp[0] = 1
+memo = set()
+res = 0
 
-for i in range(1, x + 1):
-    k = 0
+
+@cache
+def dp(x, y):
+    global res
+
+    print(x, y)
+
+    if x == n:
+        return True
+
+    if x > n:
+        return False
 
     for coin in coins:
-        if i - coin >= 0:
-            k += dp[i - coin]
+        if dp(x + coin, coin):
+            res += 1
 
-    dp[i] = k
+    return False
 
-print(dp[x])
+
+dp(0, 0)
+print(res)
+# print(memo)
+# print(dp)
+# print(dp[x])
