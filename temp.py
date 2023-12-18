@@ -1,7 +1,7 @@
 from functools import cache
 
-n = 1000
-MOD = 1000000007
+# n = 9
+# coins = [2, 3, 5]
 
 
 # @cache
@@ -14,37 +14,29 @@ MOD = 1000000007
 
 #     out = 0
 
-#     for i in range(1, 7):
-#         out += dp(x + i)
+#     for coin in coins:
+#         out += dp(x + coin)
 
-#     return out % MOD
-
+#     return out
 
 # res = dp(0)
 
-dp = [0] * (n + 1)
+# print(res)
+
+
+n, x = 3, 9
+coins = [2, 3, 5]
+
+dp = [0] * (x + 1)
 dp[0] = 1
 
-for x in range(1, n + 1):
-    out = 0
+for i in range(1, x + 1):
+    k = 0
 
-    for i in range(1, 7):
-        if x - i >= 0:
-            out += dp[x - i]
+    for coin in coins:
+        if i - coin >= 0:
+            k += dp[i - coin]
 
-    dp[x] = out % MOD
+    dp[i] = k
 
-
-print(dp[n])
-# dp = [[0] * 6 for _ in range(n)]
-
-# for y in range(n):
-#     out = 0
-
-#     for i in range(1, 7):
-#         ...
-
-#     dp[]
-
-
-# print(res)
+print(dp[x])

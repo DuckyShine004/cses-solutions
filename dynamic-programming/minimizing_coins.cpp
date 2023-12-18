@@ -3,7 +3,6 @@
 
 using namespace std;
 
-const int N = 1000000;
 const int INF = 10000000;
 
 int main() {
@@ -20,7 +19,7 @@ int main() {
         cin >> v;
     }
 
-    int dp[N + 1];
+    int dp[n + 1];
 
     for (int i = 1; i <= x; i++) {
         int cur = INF;
