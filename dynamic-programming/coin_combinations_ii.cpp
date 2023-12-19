@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
@@ -19,21 +20,16 @@ int main() {
         cin >> coin;
     }
 
-    long long k;
     long long dp[x + 1];
+
+    memset(dp, 0, sizeof(dp));
 
     dp[0] = 1;
 
-    for (int i = 1; i <= x; i++) {
-        k = 0;
-
-        for (int coin : coins) {
-            if (i - coin >= 0) {
-                k += dp[i - coin];
-            }
+    for (int coin : coins) {
+        for (int j = coin; j <= x; j++) {
+            dp[j] = (dp[j] + dp[j - coin]) % MOD;
         }
-
-        dp[i] = k % MOD;
     }
 
     cout << dp[x];
