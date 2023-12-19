@@ -1,40 +1,19 @@
 from functools import cache
+import math
 
-x = 9722
-y = str(x)
+arr = [1, 3, 4, 5, 6, 7, 8]
 
+l = 0
+r = len(arr) - 1
 
-# @cache
-# def dp(x, y):
-#     if x == 0:
-#         return 0
+target = 4
 
-#     out = float("inf")
+while l < r:
+    k = l + ((r - l) // 2)
 
-#     # print(x, y)
+    if arr[k] < target:
+        l = k + 1
+    else:
+        r = k
 
-#     for digit in y:
-#         k = x - int(digit)
-
-#         if digit > "0" and k >= 0:
-#             out = min(out, dp(k, str(k)) + 1)
-
-#     return out
-
-
-dp = [float("inf")] * (x + 1)
-dp[0] = 0
-
-for i in range(1, x + 1):
-    k = str(i)
-
-    for digit in k:
-        a = i - int(digit)
-
-        if a >= 0:
-            dp[i] = min(dp[i], dp[a] + 1)
-
-
-# print(dp(x, y))
-
-print(dp)
+print(l)
