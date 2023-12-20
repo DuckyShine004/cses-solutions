@@ -20,7 +20,5 @@ int main() {
     for (int i = 0; i < n; i++) {
         q.push_front('0');
     }
-
-    
 }
 

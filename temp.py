@@ -1,19 +1,20 @@
 from functools import cache
-import math
 
-arr = [1, 3, 4, 5, 6, 7, 8]
+n = 10
+coins = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+k = sum(coins)
 
-l = 0
-r = len(arr) - 1
+dp = [False] * (k + 1)
+dp[0] = True
 
-target = 4
 
-while l < r:
-    k = l + ((r - l) // 2)
+for coin in coins:
+    for j in range(k - coin, -1, -1):
+        if dp[j]:
+            dp[coin + j] = True
 
-    if arr[k] < target:
-        l = k + 1
-    else:
-        r = k
+for i in range(k + 1):
+    if dp[i]:
+        print(i)
 
-print(l)
+print(dp)
