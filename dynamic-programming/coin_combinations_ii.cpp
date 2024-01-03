@@ -11,7 +11,7 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 
-    int n, x;
+    int n, x; 
     cin >> n >> x;
 
     vector<int> coins(n);
