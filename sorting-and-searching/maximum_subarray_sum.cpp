@@ -1,6 +1,9 @@
 #include <algorithm>
 #include <chrono>
+#include <climits>
 #include <cmath>
+#include <cstdio>
+#include <cstring>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -46,6 +49,9 @@ using namespace std::chrono;
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+typedef vector<vector<int>> vvi;
+typedef vector<vector<bool>> vvb;
+typedef vector<vector<ll>> vvll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
 typedef vector<string> vs;
@@ -55,6 +61,7 @@ typedef vector<pll> vpll;
 const int MAX_N = 1e5 + 5;
 const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
+const ll INFLL = LLONG_MAX;
 const pii d4[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 const pii d8[8] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1},
                    {0, 1},   {1, -1}, {1, 0},  {1, -1}};
@@ -138,26 +145,36 @@ class UnionFind {
     }
 };
 
-void dfs(vector<vi> &adj, int src, int m, int n) {
-    vector<bool> seen(n);
+struct pnt2 {
+    int x;
+    int y;
+};
 
-    stack<int> s;
-    s.push(src);
-}
+struct pnt3 {
+    int x;
+    int y;
+    int z;
+};
 
 void solve() {
-    int n, m, a, b;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vector<vi> adj = vec2(int, n, m);
+    vll arr(n);
 
-    FOR(i, 0, m) {
-        cin >> a >> b;
-        adj[a - 1].psb(b - 1);
-        adj[b - 1].psb(a - 1);
+    for (ll &a : arr) {
+        cin >> a;
     }
 
-    FOR(i, 0, n) { dfs(adj, m, n); }
+    ll res = arr[0];
+    ll cur = arr[0];
+
+    FOR(i, 1, n) {
+        cur = max(arr[i], cur + arr[i]);
+        res = max(res, cur);
+    }
+
+    cout << res;
 }
 
 int main() {
